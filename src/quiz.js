@@ -44,6 +44,16 @@ class Question {
             const q = this.getQuestion();
             if (!q) return false;
             const isCorrect = answer === q.answer;
+            if (isCorrect) this.correctAnswers += 1;
+            return isCorrect;
+        }
+
+        hasEnded() {
+            return this.currentQuestionIndex === this.questions.length;
+        }
+
+        filterQuestionByDifficulty(difficulty) {
+            
         }
         }
     
