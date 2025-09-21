@@ -49,13 +49,34 @@ class Question {
         }
 
         hasEnded() {
-            return this.currentQuestionIndex === this.questions.length;
+            
+            if (this.currentQuestionIndex < this.questions.length) {
+                return false;
+            }
+            if (this.currentQuestionIndex === this.questions.length) {
+                return true;
+            }
         }
 
-        filterQuestionByDifficulty(difficulty) {
-            
+        filterQuestionsByDifficulty(difficulty) {
+            if (typeof difficulty === 'number' && difficulty >= 1 && difficulty <= 3) {
+            this.questions = this.questions.filter(q => q.difficulty === difficulty);
+            }
+ 
         }
+        averageDifficulty() {
+            if (this.questions.length === 0) {
+                return 0;
+            }
+            const totalDifficulty = this.questions.reduce((sum, question) => {
+            return sum + question.difficulty;
+            }, 0);
+            return totalDifficulty / this.questions.length;
+
         }
+
+      
+    }
     
     
 
